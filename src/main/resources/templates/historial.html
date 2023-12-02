@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Historial IMC</title>
+</head>
+<body>
+    <h2>Historial IMC</h2>
+    <form th:action="@{/calcularimc}" method="post">
+        <label for="peso">Peso (kg):</label>
+        <input type="number" step="0.1" id="peso" name="peso" required><br>
+        <label for="estatura">Estatura (m):</label>
+        <input type="number" step="0.01" id="estatura" name="estatura" required><br>
+        <input type="submit" value="Calcular IMC">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Peso (kg)</th>
+                <th>Estatura (m)</th>
+                <th>IMC</th>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="registro : ${historialIMC}">
+                <td th:text="${registro.fecha}"></td>
+                <td th:text="${registro.peso}"></td>
+                <td th:text="${registro.estatura}"></td>
+                <td th:text="${registro.imc}"></td>
+                <td th:text="${registro.categoria}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
